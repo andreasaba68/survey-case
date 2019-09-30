@@ -9,7 +9,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * Survey under editing.
+ * Survey Template under editing.
  */
 @Data
 @NoArgsConstructor

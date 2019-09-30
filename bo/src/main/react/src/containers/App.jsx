@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter } from "react-router-dom";
-import SurveyEditor from '../components/SurveyEditor/SurveyEditor';
+import SurveyTemplateEditor from '../components/SurveyTemplateEditor/SurveyTemplateEditor';
 import * as common from '../components/common.jsx';
 import './App.scss';
 
@@ -25,7 +25,7 @@ export default class App extends Component {
             <p style={{ display: "inline-block" }}>Just a header to start with.</p>
             <p style={{ display: "inline-block", fontSize: "0.7em" }}>&nbsp;&nbsp;&nbsp;&nbsp;{new Date().toTimeString()} - BackEnd {this.state.backEndVersion}.</p>
           </header>
-          <SurveyEditor surveyId="1" />
+          <SurveyTemplateEditor surveyTemplateId="1" />
         </div>
       </BrowserRouter>
     );

@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 
 /**
- * Survey under editing.
+ * Survey Template under editing.
  */
 @Data
 @NoArgsConstructor

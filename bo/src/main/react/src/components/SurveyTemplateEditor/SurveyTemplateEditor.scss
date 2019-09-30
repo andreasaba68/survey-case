@@ -1,0 +1,9 @@
+@import '~bootstrap/scss/bootstrap.scss';
+
+.survey-template-editor { @extend .row, .d-flex, .flex-wrap, .p-3 ; }
+
+.survey-template-editor > span { @extend .text-right, .m-5, .fixed-bottom ; }
+.survey-template-editor > input { @extend .form-control, .m-2 ; }
+
+.survey-template-editor > span > button { @extend .btn, .btn-outline-primary, .m-2  ; }
+.survey-template-editor > span > button.warn { @extend .btn-outline-warning ; }

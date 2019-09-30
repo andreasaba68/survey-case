@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * Rest Controller to manage BackOffice Survey requests.
+ * Rest Controller to manage BackOffice Survey Templates requests.
  */
 @RestController
 public class TemplateCtl {
@@ -37,7 +37,7 @@ public class TemplateCtl {
    * @param principal
    *          the logged user performing the save.
    *
-   * @return the id of the survey if save goes all right
+   * @return the id of the survey template if save goes all right
    */
   @PostMapping(path = TEMPLATE, consumes = "application/json", produces = "application/json")
   public Properties insertSurveyTemplate(Principal principal, @RequestBody TemplateCmd template) {
@@ -50,7 +50,7 @@ public class TemplateCtl {
    * @param principal
    *          the logged user performing the save.
    *
-   * @return the id of the survey if save goes all right
+   * @return the id of the survey template if save goes all right
    */
   @PutMapping(path = TEMPLATE)
   public Properties updateSurveyTemplate(Principal principal, @RequestBody TemplateCmd template) {
@@ -63,7 +63,7 @@ public class TemplateCtl {
    * @param principal
    *          the logged user performing the save.
    *
-   * @return the id of the survey if save goes all right
+   * @return the id of the survey template if save goes all right
    */
   @GetMapping(path = TEMPLATE + "/{id}", produces = "application/json")
   public TemplateCmd loadSurveyTemplate(Principal principal, @PathVariable("id") String id) {
