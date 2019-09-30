@@ -36,14 +36,15 @@ export default class SurveyTemplateEditor extends Component {
     if (!this.state.id)
       return common.progress();
 
-    return (
+      const h= this.handle;
+      return (
       <div>
         {common.isError(this.state.error)}
         <div className="survey-template-editor">
-          <input className="form-control" type="text" placeholder="Insert your title here" value={this.state.description} onChange={e=>this.inputTextHandler(e,"description")}/>
-          {this.state.questions.map((q, i) => <QuestionCard key={"question_0_" + i} question={q} inputTextHandler={this.inputTextHandler} />)}
+          <input className="form-control" type="text" placeholder="Insert your title here" value={this.state.description} onChange={e=>h(e,"description")}/>
+          {this.state.questions.map((q, i) => <QuestionCard key={"question_0_" + i} question={q} eventHandler={h} />)}
           <span>
-            <button  onClick={(e) => this.inputTextHandler(null,"qst-append")}><i className="fas fa-plus-circle fa-4x "/></button>
+            <button  onClick={(e) => h(null,"qst-append")}><i className="fas fa-plus-circle fa-4x "/></button>
             <button onClick={(e) => this.saveSurveyTemplate()} className="warn"><i className="fas fa-save fa-4x "/></button>
           </span>
         </div>
@@ -51,7 +52,7 @@ export default class SurveyTemplateEditor extends Component {
     );
   }
 
-  inputTextHandler = (event, prop, id, i) => {
+  handle = (event, prop, id, i) => {
     const qs = [...this.state.questions];
     let p = qs.findIndex(o => o.id === id);
     let q = qs[p];

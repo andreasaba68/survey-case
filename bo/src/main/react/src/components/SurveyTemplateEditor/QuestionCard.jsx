@@ -2,9 +2,10 @@ import React from 'react';
 import './QuestionCard.scss';
 
 const QuestionCard = (props) => {
+    const h= props.eventHandler;
 
     const QButton = (props0) => {
-        return (<button onClick={(e) => props.inputTextHandler(e, "type", props.question.id, props0.type)} ><i className={"fas "+props0.iconName} ></i></button>);
+        return (<button onClick={(e) => h(e, "type", props.question.id, props0.type)} ><i className={"fas "+props0.iconName} ></i></button>);
     }
 
     let res =
@@ -13,11 +14,11 @@ const QuestionCard = (props) => {
             <div>
                 <h4>{props.question.category}</h4>
 
-                <button onClick={(e) => props.inputTextHandler(e, "qst-before", props.question.id)}>
+                <button onClick={(e) => h(e, "qst-before", props.question.id)}>
                     <i className="fas fa-plus-circle"></i>
                 </button>
 
-                <button onClick={(e) => props.inputTextHandler(e, "mode", props.question.id)}>
+                <button onClick={(e) => h(e, "mode", props.question.id)}>
                     <i className="fas fa-edit"></i>
                 </button>
 
@@ -34,13 +35,13 @@ const QuestionCard = (props) => {
             <div key={"QuestionCard_edit_" + props.question.id} className="qc-edit">
 
                 <div>
-                    <input type="text" value={props.question.category} onChange={(e) => props.inputTextHandler(e, "category", props.question.id)} />
+                    <input type="text" value={props.question.category} onChange={(e) => h(e, "category", props.question.id)} />
                     <button className="toggle-button"
-                        onClick={(e) => props.inputTextHandler(e, "qst-delete", props.question.id)}>
+                        onClick={(e) => h(e, "qst-delete", props.question.id)}>
                         <i className="fas fa-minus" ></i>
                     </button>
                     <button className="toggle-button"
-                        onClick={(e) => props.inputTextHandler(e, "mode", props.question.id)}>
+                        onClick={(e) => h(e, "mode", props.question.id)}>
                         <i className="fas fa-eye" ></i>
                     </button><br />
                     <QButton type="yn" iconName="fa-question" />
@@ -50,7 +51,7 @@ const QuestionCard = (props) => {
                 </div>
 
                 <div>
-                    <input type="text" value={props.question.text} onChange={(e) => props.inputTextHandler(e, "text", props.question.id)} />
+                    <input type="text" value={props.question.text} onChange={(e) => h(e, "text", props.question.id)} />
                     {renderType(props)}
                 </div>
             </div>
@@ -61,6 +62,7 @@ const QuestionCard = (props) => {
 };
 
 const renderType = (props) => {
+    const h= props.eventHandler;
     const q = props.question;
     const view = q.mode === "view";
     const m = view ? "_view_" : "_edit_";
@@ -92,7 +94,7 @@ const renderType = (props) => {
         case "multipleChoice":
             return q.values.length===0 ?
                 <div key={`v_multipleChoice_${m}${q.id}_0`} className="qc-t-multipleChoiced">
-                    <i style={{position: "absolute", left: "45%", top: "85%"}} onClick={(e)=> props.inputTextHandler(e, "ans-before", props.question.id, 0) } 
+                    <i style={{position: "absolute", left: "45%", top: "85%"}} onClick={(e)=> h(e, "ans-before", props.question.id, 0) } 
                         className="fas fa-plus-circle fa-2x" />
                 </div>
                 : q.values.map((t, i) => {
@@ -103,15 +105,15 @@ const renderType = (props) => {
                                 view ? <p>{t}</p> :
                                     <React.Fragment>
                                         <input key={`v_multipleChoice_input_${m}${q.id}_${i}`}
-                                            type="text" value={t} onChange={(e) => props.inputTextHandler(e, "values", props.question.id, i)} />
-                                        <i onClick={(e)=> props.inputTextHandler(e, "ans-before", props.question.id, i) } 
+                                            type="text" value={t} onChange={(e) => h(e, "values", props.question.id, i)} />
+                                        <i onClick={(e)=> h(e, "ans-before", props.question.id, i) } 
                                             style={{position: "absolute", right: "-0.6em", top: "-20%"}} className="fas fa-plus-circle" />
-                                        <i onClick={(e)=> props.inputTextHandler(e, "ans-delete", props.question.id, i) } 
+                                        <i onClick={(e)=> h(e, "ans-delete", props.question.id, i) } 
                                             style={{position: "absolute", right: "-0.6em", bottom: "30%"}} className="fas fa-minus-circle" />
 
                                         { 
                                             (i!== (q.values.length-1)) ? null :
-                                            <i style={{position: "absolute", right: "-0.6em", bottom: "-20%"}} onClick={(e)=> props.inputTextHandler(e, "ans-after", props.question.id, i) } 
+                                            <i style={{position: "absolute", right: "-0.6em", bottom: "-20%"}} onClick={(e)=> h(e, "ans-after", props.question.id, i) } 
                                                         className="fas fa-plus-circle" />
                                         }
 
@@ -125,7 +127,7 @@ const renderType = (props) => {
         case "singleChoice":
             return q.values.length===0 ?
                 <div key={`v_multipleChoice_${m}${q.id}_0`} className="qc-t-singleChoiced">
-                    <i style={{position: "absolute", left: "45%", top: "85%"}} onClick={(e)=> props.inputTextHandler(e, "ans-before", props.question.id, 0) } 
+                    <i style={{position: "absolute", left: "45%", top: "85%"}} onClick={(e)=> h(e, "ans-before", props.question.id, 0) } 
                         className="fas fa-plus-circle fa-2x" />
                 </div>
                 : q.values.map((t, i) => {
@@ -137,15 +139,15 @@ const renderType = (props) => {
                                 <p>{t}</p> :
                                 <React.Fragment>
                                     <input key={`v_singleChoice_input_${m}${q.id}_${i}`}
-                                        type="text" value={t} onChange={(e) => props.inputTextHandler(e, "values", props.question.id, i)} />
-                                        <i onClick={(e)=> props.inputTextHandler(e, "ans-before", props.question.id, i) } 
+                                        type="text" value={t} onChange={(e) => h(e, "values", props.question.id, i)} />
+                                        <i onClick={(e)=> h(e, "ans-before", props.question.id, i) } 
                                             style={{position: "absolute", right: "-0.6em", top: "-20%"}} className="fas fa-plus-circle" />
-                                        <i onClick={(e)=> props.inputTextHandler(e, "ans-delete", props.question.id, i) } 
+                                        <i onClick={(e)=> h(e, "ans-delete", props.question.id, i) } 
                                             style={{position: "absolute", right: "-0.6em", bottom: "30%"}} className="fas fa-minus-circle" />
 
                                         { 
                                             (i!== (q.values.length-1)) ? null :
-                                            <i style={{position: "absolute", right: "-0.6em", bottom: "-20%"}} onClick={(e)=> props.inputTextHandler(e, "ans-after", props.question.id, i) } 
+                                            <i style={{position: "absolute", right: "-0.6em", bottom: "-20%"}} onClick={(e)=> h(e, "ans-after", props.question.id, i) } 
                                                         className="fas fa-plus-circle" />
                                         }
                                 </React.Fragment>
