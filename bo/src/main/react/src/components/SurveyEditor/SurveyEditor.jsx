@@ -40,6 +40,7 @@ export default class SurveyEditor extends Component {
       <div>
         {common.isError(this.state.error)}
         <div className="SurveyEditor">
+          <input className="form-control" type="text" placeholder="Insert your title here" value={this.state.description} onChange={e=>this.inputTextHandler(e,"description")}/>
           {this.state.questions.map((q, i) => <QuestionCard key={"question_0_" + i} question={q} inputTextHandler={this.inputTextHandler} />)}
           <span>
             <button  onClick={(e) => this.inputTextHandler(null,"qst-append")}><i className="fas fa-plus-circle fa-4x "/></button>
@@ -55,16 +56,15 @@ export default class SurveyEditor extends Component {
     let p = qs.findIndex(o => o.id === id);
     let q = qs[p];
     switch (prop) {
+      case "description": this.setState({ description: event.target.value });
+        break;
       case "mode": q.mode = q.mode === "edit" ? "view" : "edit"; break;
       case "values": q.values[i] = event.target.value; break;
       case "type": q[prop] = i; break;
       case "ans-delete": q.values.splice(i,1); break;
       case "ans-before": q.values.splice(i,0,""); break;
       case "ans-after": q.values.splice(i+1,0,""); break;
-      case "qst-delete": 
-        console.log(p);
-        qs.splice(p,1);
-        break;
+      case "qst-delete": console.log(p); qs.splice(p,1); break;
       case "qst-append": qs.splice(99999,0,new Question()); break;
       case "qst-before": qs.splice(p,0,new Question()); break;
         default:
