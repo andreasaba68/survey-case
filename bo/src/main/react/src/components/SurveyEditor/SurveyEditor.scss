@@ -1,9 +1,0 @@
-@import '~bootstrap/scss/bootstrap.scss';
-
-.SurveyEditor { @extend .row, .d-flex, .flex-wrap, .p-3 ; }
-
-.SurveyEditor > span { @extend .text-right, .m-5, .fixed-bottom ; }
-.SurveyEditor > input { @extend .form-control, .m-2 ; }
-
-.SurveyEditor > span > button { @extend .btn, .btn-outline-primary, .m-2  ; }
-.SurveyEditor > span > button.warn { @extend .btn-outline-warning ; }

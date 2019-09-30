@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import QuestionCard from './QuestionCard';
 import * as common from '../common.jsx';
-import './SurveyEditor.scss';
+import './SurveyTemplateEditor.scss';
 import uuid from 'uuid-random';
 
-export default class SurveyEditor extends Component {
+export default class SurveyTemplateEditor extends Component {
 
   state = {
     error: null,
@@ -13,9 +13,9 @@ export default class SurveyEditor extends Component {
   }
 
   componentDidMount() {
-    const url = `/bo/svc/template/${this.props.surveyId}`; // `/dummyData/survey.${this.props.surveyId}.json`; // "http://errorpioppolo/test"; // 
+    const url = `/bo/svc/template/${this.props.surveyTemplateId}`; // `/dummyData/survey.${this.props.surveyId}.json`; // "http://errorpioppolo/test"; // 
     common.fetchJson(url).then(d => this.setState(this.enrich(d)))
-    .catch(e => this.setState({ error: `Error while loading the survey : ${e.message}` }));
+    .catch(e => this.setState({ error: `Error while loading the Survey Template : ${e.message}` }));
   }
 
   enrich(data) {
@@ -23,11 +23,11 @@ export default class SurveyEditor extends Component {
     return data;
   }
 
-  saveSurvey() {
+  saveSurveyTemplate() {
     const meth= this.state.id===null ? "POST" :"PUT";
     common.fetchJson2("/bo/svc/template",this.state,meth)
-      .then(d => {this.state.id = d.id} )  // there is no visualization update to be performed so this shoudld work fine
-      .catch(e => this.setState({ error: `Error while saving the survey : ${e.message}` }));
+      .then(d => this.setState({id: d.id}) )
+      .catch(e => this.setState({ error: `Error while saving the survey template : ${e.message}` }));
     ;
   }
 
@@ -39,12 +39,12 @@ export default class SurveyEditor extends Component {
     return (
       <div>
         {common.isError(this.state.error)}
-        <div className="SurveyEditor">
+        <div className="survey-template-editor">
           <input className="form-control" type="text" placeholder="Insert your title here" value={this.state.description} onChange={e=>this.inputTextHandler(e,"description")}/>
           {this.state.questions.map((q, i) => <QuestionCard key={"question_0_" + i} question={q} inputTextHandler={this.inputTextHandler} />)}
           <span>
             <button  onClick={(e) => this.inputTextHandler(null,"qst-append")}><i className="fas fa-plus-circle fa-4x "/></button>
-            <button onClick={(e) => this.saveSurvey()} className="warn"><i className="fas fa-save fa-4x "/></button>
+            <button onClick={(e) => this.saveSurveyTemplate()} className="warn"><i className="fas fa-save fa-4x "/></button>
           </span>
         </div>
       </div>
