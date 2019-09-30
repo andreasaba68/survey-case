@@ -1,0 +1,16 @@
+
+// Override default variables before the import
+// $body-bg: #000;
+
+// Import Bootstrap and its default variables
+@import '~bootstrap/scss/bootstrap.scss';
+
+.App {
+  text-align: center;
+}
+
+.errorOuter { @extend .alert, .alert-danger ; }
+.errorInner { @extend .pr-2 ; }
+
+.progress-outer-loc { @extend .progress, .w-75 ; }
+.progress-inner-loc { @extend .progress-bar, .bg-info, .progress-bar-striped, .progress-bar-animated, .w-75 ; }

@@ -22,12 +22,13 @@ public class OpsServices {
    * Returns a version indication.
    *
    * @return the Properties to be translated in JSon
-   * @throws IOException if it can't read the manifest
+   * @throws IOException
+   *           if it can't read the manifest
    */
   @GetMapping("/ops/version")
   public Properties version() throws IOException {
     Properties res = new Properties();
-    File f= new File(".\\target\\classes\\application.properties");
+    File f = new File(".\\target\\classes\\application.properties");
     res.put("backEndVersion", new Timestamp(f.lastModified()).toString());
     return res;
   }

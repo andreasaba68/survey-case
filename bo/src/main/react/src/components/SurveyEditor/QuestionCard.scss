@@ -1,0 +1,40 @@
+@import '~bootstrap/scss/bootstrap.scss';
+
+// "qc(questioncard)-view" styles
+.qc-view { @extend .card, .text-left, .col-sm-5, .col-md-3, .col-lg-3, .p-0, .m-2 ; }
+.qc-view > :first-child { @extend .card-header ; }
+.qc-view > :first-child > h4 { display: inline-block }
+.qc-view > :first-child > button { @extend .btn, .btn-outline-primary, .btn-sm, .float-right, .ml-1 ; }
+.qc-view > :last-child { @extend .card-body ; }
+.qc-view > :last-child > p { @extend .card-text ; }
+
+// "qc(questioncard)-edit" styles
+.qc-edit { @extend .card, .text-left, .col-sm-5, .col-md-3, .col-lg-3, .p-0, .m-2, .border-warning ; }
+.qc-edit > :first-child { @extend .form-group, .card-header ; }
+.qc-edit > :first-child > input { @extend .h1, .d-inline-block, .form-control, .w-75 ; }
+.qc-edit > div > button { @extend .btn, .btn-outline-warning, .btn-sm, .mr-1 ; }
+.qc-edit > div > .toggle-button { @extend .btn, .btn-outline-warning, .btn-sm, .float-right ; }
+
+.qc-edit > :last-child { @extend .card-body ; }
+.qc-edit > :last-child > input { @extend .card-text, .w-100 ; }
+
+// "qc(questioncard)-t(type)-" styles
+.qc-t-ynd { display: block ; }
+.qc-t-ynd > div { @extend .input-group, .mb-1 ; }
+.qc-t-ynd > div > div {  @extend .input-group-prepend, .input-group-text ; }
+.qc-t-ynd > div > p {  @extend .card-text, .form-control ; }
+
+.qc-t-freeText { @extend .form-group ; }
+.qc-t-freeText > textarea { @extend .form-control ; }
+
+.qc-t-multipleChoiced { @extend .input-group, .mb-1 ; }
+.qc-t-multipleChoiced > div { @extend .input-group-prepend, .input-group-text ; }
+.qc-t-multipleChoiced > p { @extend .form-control ; }
+.qc-t-multipleChoiced > input { @extend .form-control ; }
+.qc-t-multipleChoiced > i { @extend .text-warning }
+
+.qc-t-singleChoiced { @extend .input-group, .mb-1 ; }
+.qc-t-singleChoiced > div { @extend .input-group-prepend, .input-group-text ; }
+.qc-t-singleChoiced > p { @extend .form-control ; }
+.qc-t-singleChoiced > input { @extend .form-control ; }
+.qc-t-singleChoiced > i { @extend .text-warning }

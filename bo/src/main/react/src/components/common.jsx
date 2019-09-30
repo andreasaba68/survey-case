@@ -25,3 +25,26 @@ export function fetchJson(url) {
         return res.json();
     });
 }
+
+export function fetchJson2(url,postData,method="POST") {
+
+    let b= null;
+
+    if (postData!==null) {
+        b= {
+            method: method,
+            headers: {
+              'Content-Type': 'application/json;charset=utf-8'
+            },
+            body: JSON.stringify(postData)
+        };
+    }
+
+    return (b===null ? fetch(url) : fetch(url,b))
+    .then( res =>{
+        if (!res.ok)
+            throw new Error(`response status ${res.status}`);
+        return res.json();
+    });
+}
+
