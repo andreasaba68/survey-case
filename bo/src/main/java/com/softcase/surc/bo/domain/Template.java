@@ -22,7 +22,7 @@ public class Template {
 
   @Id
   private String id;
-  private String description;
+  private String title;
 
   @Builder.Default
   private List<Question> questions = new ArrayList<>();

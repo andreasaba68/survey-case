@@ -60,7 +60,7 @@ public class TemplateCtlIT {
   public void saveTest() throws Exception {
 
     String d = "description";
-    TemplateCmd s0 = TemplateCmd.builder().description(d).id("id").build();
+    TemplateCmd s0 = TemplateCmd.builder().title(d).id("id").build();
     s0.getQuestions()
         .add(new QuestionCmd("id", "category", "text", "type", mkList("val1", "val2", "val3")));
 
@@ -73,8 +73,8 @@ public class TemplateCtlIT {
 
     assertNotSame("",res);
 
-    Template s = templateRepo.findById(res).orElse(Template.builder().description("NOT"+d).build());
-    assertSame(d, s.getDescription());
+    Template s = templateRepo.findById(res).orElse(Template.builder().title("NOT" + d).build());
+    assertSame(d, s.getTitle());
 
   }
 

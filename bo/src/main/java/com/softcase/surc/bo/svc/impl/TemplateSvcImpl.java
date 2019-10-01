@@ -6,6 +6,7 @@ import com.softcase.surc.bo.repos.TemplateRepo;
 import com.softcase.surc.bo.svc.TemplateSvc;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import lombok.AllArgsConstructor;
 
@@ -21,7 +22,8 @@ public class TemplateSvcImpl implements TemplateSvc {
   /**
    * Inserts the survey template in the database.
    * 
-   * @param cmd the template
+   * @param cmd
+   *          the template
    * @return
    */
   @Override
@@ -33,17 +35,20 @@ public class TemplateSvcImpl implements TemplateSvc {
 
   @Override
   public TemplateCmd loadSurveyTemplate(String id) {
-    // TODO this is an initial example, needs to be made for real
-    List<Template> x = templateRepo.findAll();
-    Template y = x.get(0);
-    TemplateCmd z = mapper.templateToTemplateCmd(y);
-    return z;
+    return mapper.templateToTemplateCmd(templateRepo.findById(id).orElse(null));
   }
 
   @Override
   public TemplateCmd updateSurveyTemplate(TemplateCmd cmd) {
     Template entity = mapper.templateCmdToTemplate(cmd);
     return mapper.templateToTemplateCmd(templateRepo.save(entity));
+  }
+
+  @Override
+  public List<TemplateCmd> getAllSurveyTemplates() {
+    return templateRepo.findAll().stream()
+        .map(t -> TemplateCmd.builder().id(t.getId()).title(t.getTitle()).build())
+        .collect(Collectors.toList());
   }
 
 }

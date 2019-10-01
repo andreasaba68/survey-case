@@ -32,18 +32,32 @@ public class TemplateBootstrap implements ApplicationListener<ContextRefreshedEv
   }
 
   private List<Template> getTemplates() {
-    String k = "General suggestions";
+    String r = "Please rate us about ...";
+    String[] rates = new String[] { "Good", "Average", "Poor" };
 
-    Template t = Template.builder().description("No description provided yet").build()
-        .addQuestion("005", k, "What's the case ?", "singleChoice", "case this", "case that",
-            "take that!")
-        .addQuestion("004", k, "What did you like the most ?", "multipleChoice", "the taste",
-            "the scent", "the colours")
-        .addQuestion("id", k, "What would you improve ?", "freeText", "", "", "")
-        .addQuestion("id", "Food & drinks", "Did you like the food?", "yn", "", "", "");
+    Template t0 = Template.builder().title("Hotel hAll-White - Guest Comments").build()
+        .addQuestion("0", r, "How did we do with Welcoming you?", "singleChoice", rates)
+        .addQuestion("1", r, "What about cleanliness?", "singleChoice", rates)
+        .addQuestion("2", r, "Where services satisfactory?", "yn", "")
+        .addQuestion("3", "General", "Why did you choose to stay with us ?", "freeText", "", "", "")
+        .addQuestion("4", "Suggestions?", "What would you improve ?", "freeText", "", "", "")
+        .addQuestion("5", "Contacts", "Feel free to leave your contacts", "freeText", "", "", "")
+        .addQuestion("6", "Contacts", "Fancy a contact by us?", "yn", "");
+
+    Template t1 = Template.builder().title("Restaurant hAll-Good Food!").build()
+        .addQuestion("0", "Rate us", "How much would you recomend us?", "singleChoice", 
+            "0 - I wouldn't", "1 - Only to nearby people", "2 - Anyone in the city", "3 - Let me tell the world!")
+        .addQuestion("1", r, "How often do you dine with us ?", "singleChoice", "monthly ...", "weekly ;-)",
+            "everyday!")
+        .addQuestion("2", "The Food", "What did you like the most ?", "multipleChoice", "first courses",
+            "second courses", "desserts", "fresh fruit")
+        .addQuestion("3", "The Server", "Was s/he attentive when you needed ?", "singleChoice", "completely",
+            "most often", "kinda ...", "absolutely not :(")
+        .addQuestion("4", r, "What would you improve ?", "freeText", "", "", "");
 
     List<Template> res = new ArrayList<>();
-    res.add(t);
+    res.add(t0);
+    res.add(t1);
     return res;
   }
 

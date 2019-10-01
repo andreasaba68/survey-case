@@ -5,6 +5,7 @@ import com.softcase.surc.bo.commands.TemplateCmd;
 import com.softcase.surc.bo.svc.TemplateSvc;
 
 import java.security.Principal;
+import java.util.List;
 import java.util.Properties;
 
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,6 +30,19 @@ public class TemplateCtl {
   public TemplateCtl(TemplateSvc templateSvc) {
     super();
     this.templateSvc = templateSvc;
+  }
+
+  /**
+   * Lists all Survey Templates in the storage.
+   *
+   * @param principal
+   *          the logged user performing the save.
+   *
+   * @return the id of the survey template if save goes all right
+   */
+  @GetMapping(path = TEMPLATES, produces = "application/json")
+  public List<TemplateCmd> listSurveyTemplates(Principal principal) {
+    return templateSvc.getAllSurveyTemplates();
   }
 
   /**

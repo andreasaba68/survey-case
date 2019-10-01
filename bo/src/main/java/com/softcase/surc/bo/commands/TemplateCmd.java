@@ -17,7 +17,7 @@ import lombok.NoArgsConstructor;
 @Builder
 public class TemplateCmd {
   private String id;
-  private String description;
+  private String title;
 
   @Builder.Default
   private List<QuestionCmd> questions = new ArrayList<>();
