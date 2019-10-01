@@ -13,7 +13,8 @@ export default class SurveyTemplateEditor extends Component {
   }
 
   componentDidMount() {
-    const url = `/bo/svc/template/${this.props.surveyTemplateId}`; // `/dummyData/survey.${this.props.surveyId}.json`; // "http://errorpioppolo/test"; // 
+    console.log(this.props.match.params.id);
+    const url = `/bo/svc/template/${this.props.match.params.id}`; // `/dummyData/survey.${this.props.surveyId}.json`; // "http://errorpioppolo/test"; // 
     common.fetchJson(url).then(d => this.setState(this.enrich(d)))
     .catch(e => this.setState({ error: `Error while loading the Survey Template : ${e.message}` }));
   }
@@ -41,7 +42,7 @@ export default class SurveyTemplateEditor extends Component {
       <div>
         {common.isError(this.state.error)}
         <div className="survey-template-editor">
-          <input className="form-control" type="text" placeholder="Insert your title here" value={this.state.description} onChange={e=>h(e,"description")}/>
+          <input className="form-control" type="text" placeholder="Insert your title here" value={this.state.title} onChange={e=>h(e,"title")}/>
           {this.state.questions.map((q, i) => <QuestionCard key={"question_0_" + i} question={q} eventHandler={h} />)}
           <span>
             <button  onClick={(e) => h(null,"qst-append")}><i className="fas fa-plus-circle fa-4x "/></button>
@@ -57,7 +58,7 @@ export default class SurveyTemplateEditor extends Component {
     let p = qs.findIndex(o => o.id === id);
     let q = qs[p];
     switch (prop) {
-      case "description": this.setState({ description: event.target.value });
+      case "title": this.setState({ title: event.target.value });
         break;
       case "mode": q.mode = q.mode === "edit" ? "view" : "edit"; break;
       case "values": q.values[i] = event.target.value; break;

@@ -1,6 +1,8 @@
-import React, { Component } from 'react';
-import { BrowserRouter } from "react-router-dom";
+import SurveyTemplatesList from '../components/SurveyTemplatesList/SurveyTemplatesList';
 import SurveyTemplateEditor from '../components/SurveyTemplateEditor/SurveyTemplateEditor';
+
+import React, { Component } from 'react';
+import { BrowserRouter, Route } from "react-router-dom";
 import * as common from '../components/common.jsx';
 import './App.scss';
 
@@ -25,7 +27,8 @@ export default class App extends Component {
             <p style={{ display: "inline-block" }}>Just a header to start with.</p>
             <p style={{ display: "inline-block", fontSize: "0.7em" }}>&nbsp;&nbsp;&nbsp;&nbsp;{new Date().toTimeString()} - BackEnd {this.state.backEndVersion}.</p>
           </header>
-          <SurveyTemplateEditor surveyTemplateId="1" />
+          <Route path="/" exact component={SurveyTemplatesList} />
+          <Route path="/edit/:id" component={SurveyTemplateEditor} />
         </div>
       </BrowserRouter>
     );

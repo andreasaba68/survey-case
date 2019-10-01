@@ -12,7 +12,7 @@ const QuestionCard = (props) => {
         <div key={"QuestionCard_view_" + props.question.id} className="qc-view">
 
             <div>
-                <h4>{props.question.category}</h4>
+                <h4 style={{ display: "inline-block" }} >{props.question.category}</h4>
 
                 <button onClick={(e) => h(e, "qst-before", props.question.id)}>
                     <i className="fas fa-plus-circle"></i>

@@ -1,0 +1,20 @@
+@import '~bootstrap/scss/bootstrap.scss';
+
+.surveys-list { @extend .row, .d-flex, .flex-wrap, .p-3 ; }
+
+.surveys-list > span { @extend .text-right, .m-5, .fixed-bottom ; }
+
+.surveys-list > span > button { @extend .btn, .btn-outline-warning, .m-2  ; }
+
+.surveys-list > div { @extend .card, .border-primary, .col-sm-5, .col-md-3, .col-lg-3, .p-0, .m-2 ; }
+
+.surveys-list > div > :first-child { @extend .card-header ; }
+.surveys-list > div > div { @extend .card-body ; }
+
+.surveys-list > div > div > h4 {
+    @extend .card-title ;
+    display: inline-block;
+}
+.surveys-list > div > div > p { @extend .card-text ; }
+.surveys-list > div > div > button { @extend .btn, .btn-outline-warning, .float-right, .ml-2 ; }
+.surveys-list > div > div > a { @extend .btn, .btn-outline-warning, .float-right, .ml-2 ; }
